@@ -47,3 +47,30 @@ Commands to run from the terminal:
                      | evaluate |                      
                      +----------+ 
 ```
+
+## Deployment Suggestions
+
+Depending on your non-functional requirements, there are a variety of ways you could choose to deploy the model trained 
+by this ML pipeline.
+
+### Build Your own RESTful Web API
+
+If you want an always available, small load endpoint; you could build a RESTful web service.
+
+This web-service could receive a HTTP POST request.
+Inside the body of this message the image could be encoded as a base64 string.
+The web service could then respond with a JSON payload containing the predicted class inside.
+
+For this I recommend using [FastAPI](https://fastapi.tiangolo.com/).
+
+This web service could then be deployed using uvicorn and install it on an EC2 server or an ECS cluster.
+
+### AWS SageMaker
+
+You can import your model into [Amazon SageMaker](https://docs.aws.amazon.com/sagemaker/index.html)
+which has a suite of deployment options for registered models:
+- [Real-time inference](https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints.html)
+- [Serverless inference](https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints.html)
+- [Batch transform](https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html)
+- [Asynchronous inference](https://docs.aws.amazon.com/sagemaker/latest/dg/async-inference.html)
+- 
