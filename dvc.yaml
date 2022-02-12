@@ -24,4 +24,22 @@ stages:
         template: confusion
         x: actual
         y: predicted
-        title: Confusion Matrix
+        title: Validation Confusion Matrix
+  download_test_data:
+    cmd: python fashmnistmlpipeline/download_data.py False test
+    outs:
+    - data/FashionMNIST/test
+  evaluate:
+    cmd: python fashmnistmlpipeline/evaluate.py
+    deps:
+    - data/model/learner.pkl
+    - data/FashionMNIST/test
+    - fashmnistmlpipeline/evaluate.py
+    metrics:
+    - data/model/test_results.json
+    plots:
+    - data/model/test_actual_vs_predicted.csv:
+        template: confusion
+        x: actual
+        y: predicted
+        title: Test Confusion Matrix

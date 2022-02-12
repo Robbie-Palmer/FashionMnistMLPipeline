@@ -23,8 +23,8 @@ stages:
       size: 30329107
       nfiles: 60000
     - path: fashmnistmlpipeline/train.py
-      md5: 89b3901141a5d38cdcdf07d670716e7c
-      size: 2471
+      md5: 3b853d8b9e6af8a2afef80a31364ee1d
+      size: 2472
     params:
       fashmnistmlpipeline/params.yml:
         train:
@@ -36,14 +36,41 @@ stages:
           metric_target_average_fn: weighted
     outs:
     - path: data/model/actual_vs_predicted.csv
-      md5: 68903b8c7b5a04d9a4bd9d2d2774869e
+      md5: 6588e6b23f5984e026f8fc026daa4157
       size: 48017
     - path: data/model/learner.pkl
-      md5: 9aa5efe7a4fafd1279ef1069af17dcbe
+      md5: 4d59275cd1543b54b751959c7a547043
       size: 50183174
     - path: data/model/model.pth
-      md5: 3bc6bd81476486c31334c92acce38062
+      md5: c6ba324ba308cc4f3bda2b9a68211811
       size: 46929017
     - path: data/model/results.json
-      md5: 9387b0506f919e4bd3b8937e4dc074d0
-      size: 336
+      md5: 275a074cf371180da3c1848871aa1735
+      size: 335
+  download_test_data:
+    cmd: python fashmnistmlpipeline/download_data.py False test
+    outs:
+    - path: data/FashionMNIST/test
+      md5: bea5035908b576882383dabdbddbe162.dir
+      size: 5072560
+      nfiles: 10000
+  evaluate:
+    cmd: python fashmnistmlpipeline/evaluate.py
+    deps:
+    - path: data/FashionMNIST/test
+      md5: bea5035908b576882383dabdbddbe162.dir
+      size: 5072560
+      nfiles: 10000
+    - path: data/model/learner.pkl
+      md5: 4d59275cd1543b54b751959c7a547043
+      size: 50183174
+    - path: fashmnistmlpipeline/evaluate.py
+      md5: 48d633174614473aebb1bf31ed9676e6
+      size: 1064
+    outs:
+    - path: data/model/test_actual_vs_predicted.csv
+      md5: 4e9f770345740a4e6aed5c9631606165
+      size: 40017
+    - path: data/model/test_results.json
+      md5: 2661ae6e7e80f5ddc50dce1023436d12
+      size: 310

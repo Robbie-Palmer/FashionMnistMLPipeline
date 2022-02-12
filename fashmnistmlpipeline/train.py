@@ -10,20 +10,20 @@ from pandas import DataFrame
 from torch import save as save_model
 from torchvision import models as torchvision_models
 
-from fashmnistmlpipeline import data_root
+from fashmnistmlpipeline import data_root, model_dir
 from fashmnistmlpipeline.params import params
 
 if __name__ == '__main__':
     train_params = params.train
     set_seed(train_params.seed)
-    model_dir = data_root / 'model'
     model_dir.mkdir(exist_ok=True)
+    train_data_dir = data_root / 'FashionMNIST/processed'
 
     block = DataBlock(blocks=(ImageBlock(cls=PILImageBW), CategoryBlock),
                       get_items=get_image_files,
                       splitter=RandomSplitter(train_params.valid_pct_split),
                       get_y=parent_label)
-    loaders = block.dataloaders(data_root / 'FashionMNIST/processed')
+    loaders = block.dataloaders(train_data_dir)
 
     architecture = getattr(torchvision_models, train_params.architecture)
     metrics = [accuracy,
@@ -49,5 +49,5 @@ if __name__ == '__main__':
         json.dump(dataset_metrics, results_file)
 
     interp = ClassificationInterpretation.from_learner(learner)
-    validation_tile_predictions = DataFrame({"actual": interp.targs, "predicted": interp.decoded})
-    validation_tile_predictions.to_csv(model_dir / 'actual_vs_predicted.csv', index=False)
+    validation_predictions = DataFrame({"actual": interp.targs, "predicted": interp.decoded})
+    validation_predictions.to_csv(model_dir / 'actual_vs_predicted.csv', index=False)

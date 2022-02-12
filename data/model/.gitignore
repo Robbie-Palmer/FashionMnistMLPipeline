@@ -2,3 +2,5 @@
 /model.pth
 /results.json
 /actual_vs_predicted.csv
+/test_results.json
+/test_actual_vs_predicted.csv
