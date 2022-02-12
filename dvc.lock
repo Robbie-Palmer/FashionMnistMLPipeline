@@ -2,6 +2,10 @@ schema: '2.0'
 stages:
   download_train_data:
     cmd: python fashmnistmlpipeline/download_data.py True processed
+    deps:
+    - path: fashmnistmlpipeline/download_data.py
+      md5: 79cbb6395739016bac9a0f22c870b6ad
+      size: 895
     outs:
     - path: data/FashionMNIST/processed
       md5: 971edf6f90eb4eb4fa15271f159245b0.dir
@@ -11,3 +15,20 @@ stages:
       md5: ccdd6829f21df1a9b1ef43481ea19b4e.dir
       size: 85828693
       nfiles: 8
+  train_model:
+    cmd: python fashmnistmlpipeline/train.py
+    deps:
+    - path: data/FashionMNIST/processed
+      md5: 971edf6f90eb4eb4fa15271f159245b0.dir
+      size: 30329107
+      nfiles: 60000
+    - path: fashmnistmlpipeline/train.py
+      md5: bafb85ddf227cad7b6e552f8bc5b1144
+      size: 1333
+    outs:
+    - path: data/model/learner.pkl
+      md5: c8027c99298ab979a00d04bd15176e8c
+      size: 50183174
+    - path: data/model/model.pth
+      md5: e75692993d8042d85186d6fdc3b54165
+      size: 46929017

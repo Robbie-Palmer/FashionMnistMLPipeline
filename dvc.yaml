@@ -1,6 +1,16 @@
 stages:
   download_train_data:
     cmd: python fashmnistmlpipeline/download_data.py True processed
+    deps:
+    - fashmnistmlpipeline/download_data.py
     outs:
     - data/FashionMNIST/processed
     - data/FashionMNIST/raw
+  train_model:
+    cmd: python fashmnistmlpipeline/train.py
+    deps:
+    - data/FashionMNIST/processed
+    - fashmnistmlpipeline/train.py
+    outs:
+    - data/model/learner.pkl
+    - data/model/model.pth
