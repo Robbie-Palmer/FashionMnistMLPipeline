@@ -1,0 +1,6 @@
+stages:
+  download_train_data:
+    cmd: python fashmnistmlpipeline/download_data.py True processed
+    outs:
+    - data/FashionMNIST/processed
+    - data/FashionMNIST/raw

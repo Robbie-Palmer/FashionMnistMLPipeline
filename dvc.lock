@@ -1,0 +1,13 @@
+schema: '2.0'
+stages:
+  download_train_data:
+    cmd: python fashmnistmlpipeline/download_data.py True processed
+    outs:
+    - path: data/FashionMNIST/processed
+      md5: 971edf6f90eb4eb4fa15271f159245b0.dir
+      size: 30329107
+      nfiles: 60000
+    - path: data/FashionMNIST/raw
+      md5: ccdd6829f21df1a9b1ef43481ea19b4e.dir
+      size: 85828693
+      nfiles: 8

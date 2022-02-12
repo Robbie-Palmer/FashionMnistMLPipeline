@@ -1,6 +1,6 @@
 # Fashion MNIST ML Pipeline
 
-A machine learning pipeline for training a convolutional neural network on the #
+A machine learning pipeline for training a convolutional neural network on the 
 [Fashion MNIST](https://github.com/zalandoresearch/fashion-mnist) dataset.
 
 ## Development Environment Setup
