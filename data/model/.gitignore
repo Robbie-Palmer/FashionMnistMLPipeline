@@ -1,2 +1,4 @@
 /learner.pkl
 /model.pth
+/results.json
+/actual_vs_predicted.csv

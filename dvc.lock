@@ -23,8 +23,8 @@ stages:
       size: 30329107
       nfiles: 60000
     - path: fashmnistmlpipeline/train.py
-      md5: 521c44d170e96aac69474ee4b777e75e
-      size: 1741
+      md5: 89b3901141a5d38cdcdf07d670716e7c
+      size: 2471
     params:
       fashmnistmlpipeline/params.yml:
         train:
@@ -35,9 +35,15 @@ stages:
           architecture: resnet18
           metric_target_average_fn: weighted
     outs:
+    - path: data/model/actual_vs_predicted.csv
+      md5: 68903b8c7b5a04d9a4bd9d2d2774869e
+      size: 48017
     - path: data/model/learner.pkl
-      md5: 2f3674771a1d774f34a84055d7b6c384
+      md5: 9aa5efe7a4fafd1279ef1069af17dcbe
       size: 50183174
     - path: data/model/model.pth
-      md5: fb646f4f8aef6da7a293d8599bce864e
+      md5: 3bc6bd81476486c31334c92acce38062
       size: 46929017
+    - path: data/model/results.json
+      md5: 9387b0506f919e4bd3b8937e4dc074d0
+      size: 336

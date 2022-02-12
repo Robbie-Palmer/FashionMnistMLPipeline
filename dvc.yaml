@@ -17,3 +17,11 @@ stages:
     outs:
     - data/model/learner.pkl
     - data/model/model.pth
+    metrics:
+    - data/model/results.json
+    plots:
+    - data/model/actual_vs_predicted.csv:
+        template: confusion
+        x: actual
+        y: predicted
+        title: Confusion Matrix
