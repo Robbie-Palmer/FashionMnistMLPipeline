@@ -11,6 +11,9 @@ stages:
     deps:
     - data/FashionMNIST/processed
     - fashmnistmlpipeline/train.py
+    params:
+    - fashmnistmlpipeline/params.yml:
+      - train
     outs:
     - data/model/learner.pkl
     - data/model/model.pth

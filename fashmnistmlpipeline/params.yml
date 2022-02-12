@@ -1,0 +1,10 @@
+train:
+  seed: 42
+  pretrained: true
+  valid_pct_split: 0.2
+  num_epochs: 2
+  # Choose name from https://pytorch.org/vision/stable/models.html
+  architecture: "resnet18"
+  # See https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html#sklearn.metrics.f1_score
+  # for information on options for weighting multi-class metrics
+  metric_target_average_fn: "weighted"
